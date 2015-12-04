@@ -1,9 +1,9 @@
 # ADD bulk users to linux machines
 
-1. Update hosts file with your servers something like this 
+1. Update hosts file with your servers something like this  
 
-     prod-app-1 ansible_ssh_host=192.168.1.2 ansible_ssh_user=ubuntu ansible_ssh_key=PATH_TO_SSH_KEY  
-     prod-app-2 ansible_ssh_host=192.168.1.3 ansible_ssh_user=ubuntu ansible_ssh_key=PATH_TO_SSH_KEY  
+	     prod-app-1 ansible_ssh_host=192.168.1.2 ansible_ssh_user=ubuntu ansible_ssh_key=PATH_TO_SSH_KEY  
+	     prod-app-2 ansible_ssh_host=192.168.1.3 ansible_ssh_user=ubuntu ansible_ssh_key=PATH_TO_SSH_KEY  
      
   NOTE: If the private key has passphrase, then in order to use it with ansible you have to add that key to ssh-agent
         to do that on any linux machines, from which you are going to run the ansible, follow the steps metioned below
