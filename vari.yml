@@ -1,0 +1,14 @@
+---
+users:
+  abhi:
+    password: AbhI
+    groups: root
+    comment: Abhijit Chaudhari
+    key: "{{ lookup('file', '/Users/abhijit/local_conf/abhi.pub') }}"
+    sudo_access: 'abhi ALL=(ALL) NOPASSWD: ALL'
+  gotu:
+    password: GotU
+    groups: ubuntu
+    key: "{{ lookup('file', '/Users/abhijit/local_conf/abhi.pub') }}"
+    comment: Vaibhav  Choudhari
+    sudo_access: 'gotu ALL=(ALL) NOPASSWD: /bin/rm'

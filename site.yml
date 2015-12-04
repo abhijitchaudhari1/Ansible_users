@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: false
+  tasks:
+  - name: Add user
+    user: name="{{ item.key }}" comment="{{ item.value.comment }}"  groups="{{ item.value.groups }}" shell=/bin/bash
+    with_dict: users
+
+  - name: Set user password
+    shell: echo "{{ item.key }}":"{{ item.value.password }}" | chpasswd
+    with_dict: users
+
+  - name: Set users public key
+    authorized_key: user="{{ item.key }}" key="{{ item.value.key }}"
+    with_dict: users
+  
+  - name: Check sudo access
+    shell: cat /etc/sudoers
+    register: sudo_reg
+
+  - name: Setting sudo access for users
+    shell: echo "{{ item.value.sudo_access }}" >> /etc/sudoers
+    when: sudo_reg.stdout.find("{{ item.value.sudo_access }}") == -1
+    with_dict: users
