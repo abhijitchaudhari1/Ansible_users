@@ -17,11 +17,11 @@
     authorized_key: user="{{ item.key }}" key="{{ item.value.key }}"
     with_dict: users
   
-  - name: Check sudo access
-    shell: cat /etc/sudoers
-    register: sudo_reg
-
-  - name: Setting sudo access for users
-    shell: echo "{{ item.value.sudo_access }}" >> /etc/sudoers
-    when: sudo_reg.stdout.find("{{ item.value.sudo_access }}") == -1
+ 
+  - name: Add jenkins to sudoers
+    lineinfile:
+      dest=/etc/sudoers
+      state=present
+      regexp="^{{ item.key }}"
+      line="{{ item.value.sudo_access }}"
     with_dict: users
