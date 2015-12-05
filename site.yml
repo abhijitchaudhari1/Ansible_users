@@ -18,7 +18,7 @@
     with_dict: users
   
  
-  - name: Add jenkins to sudoers
+  - name: Add users to sudoers
     lineinfile:
       dest=/etc/sudoers
       state=present
