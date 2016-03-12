@@ -3,7 +3,7 @@
   become: yes
   become_method: sudo
   become_user: root
-  gather_facts: false
+  gather_facts: yes
   tasks:
   - name: Add user
     user: name="{{ item.key }}" comment="{{ item.value.comment }}"  groups="{{ item.value.groups }}" shell=/bin/bash
